@@ -26,6 +26,8 @@ public class ClientConverter {
                 System.out.println("8 - Libras -> Quilogramas");
                 System.out.println("9 - Horas -> Minutos");
                 System.out.println("10 - Minutos -> Horas");
+                System.out.println("11 - Metros -> Pés");
+                System.out.println("12 - Pés -> Metros");
                 System.out.println("0 - Sair");
                 System.out.print("Escolha uma opcao: ");
                 opcao = sc.nextInt();
@@ -77,6 +79,16 @@ public class ClientConverter {
                     case 10 -> {
                         resultado = stub.minutesToHours(valor);
                         System.out.printf("%.2f min = %.2f h%n", valor, resultado);
+                    }
+                    case 11 -> {
+                        resultado = stub.metersToFeet(valor);
+                        System.out.printf("%.2f m = %.2f pés%n", valor, resultado);
+                        break;
+                    }
+                    case 12 -> {
+                        resultado = stub.feetToMeters(valor);
+                        System.out.printf("%.2f pés = %.2f m%n", valor, resultado);
+                        break;
                     }
                     default -> System.out.println("Opcao invalida!");
                 }

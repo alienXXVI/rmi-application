@@ -19,4 +19,8 @@ public interface Converter extends Remote {
     // Tempo
     double hoursToMinutes(double hours) throws RemoteException;
     double minutesToHours(double minutes) throws RemoteException;
+
+    // Altura
+    double metersToFeet(double meters) throws RemoteException;
+    double feetToMeters(double feet) throws RemoteException;
 }

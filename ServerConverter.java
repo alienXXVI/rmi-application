@@ -8,56 +8,66 @@ public class ServerConverter implements Converter {
 
     // --- Temperatura ---
     public double celsiusToFahrenheit(double c) throws RemoteException {
-        System.out.println("[LOG] Converting " + c + " °C to Fahrenheit");
+        System.out.println("Convertendo " + c + " °C para Fahrenheit");
         return (c * 9/5) + 32;
     }
 
     public double fahrenheitToCelsius(double f) throws RemoteException {
-        System.out.println("[LOG] Converting " + f + " °F to Celsius");
+        System.out.println("Convertendo " + f + " °F para Celsius");
         return (f - 32) * 5/9;
     }
 
     // --- Distância ---
     public double kmToMiles(double km) throws RemoteException {
-        System.out.println("[LOG] Converting " + km + " km to miles");
+        System.out.println("Convertendo " + km + " km para miles");
         return km * 0.621371;
     }
 
     public double milesToKm(double miles) throws RemoteException {
-        System.out.println("[LOG] Converting " + miles + " miles to km");
+        System.out.println("Convertendo " + miles + " miles para km");
         return miles / 0.621371;
     }
 
     public double metersToCentimeters(double meters) throws RemoteException {
-        System.out.println("[LOG] Converting " + meters + " m to cm");
+        System.out.println("Convertendo " + meters + " m para cm");
         return meters * 100;
     }
 
     public double centimetersToMeters(double cm) throws RemoteException {
-        System.out.println("[LOG] Converting " + cm + " cm to m");
+        System.out.println("Convertendo " + cm + " cm para m");
         return cm / 100;
     }
 
     // --- Peso ---
     public double kgToLbs(double kg) throws RemoteException {
-        System.out.println("[LOG] Converting " + kg + " kg to lbs");
+        System.out.println("Convertendo " + kg + " kg para lbs");
         return kg * 2.20462;
     }
 
     public double lbsToKg(double lbs) throws RemoteException {
-        System.out.println("[LOG] Converting " + lbs + " lbs to kg");
+        System.out.println("Convertendo " + lbs + " lbs para kg");
         return lbs / 2.20462;
     }
 
     // --- Tempo ---
     public double hoursToMinutes(double hours) throws RemoteException {
-        System.out.println("[LOG] Converting " + hours + " h to min");
+        System.out.println("Convertendo " + hours + " h para min");
         return hours * 60;
     }
 
     public double minutesToHours(double minutes) throws RemoteException {
-        System.out.println("[LOG] Converting " + minutes + " min to h");
+        System.out.println("Convertendo " + minutes + " min para h");
         return minutes / 60;
+    }
+
+	public double metersToFeet(double meters) throws RemoteException {
+        System.out.println("Converting " + meters + " meters to feet");
+        return meters * 3.28084;
+    }
+
+    public double feetToMeters(double feet) throws RemoteException {
+        System.out.println("Converting " + feet + " feet to meters");
+        return feet / 3.28084;
     }
 
     public static void main(String[] args) {
