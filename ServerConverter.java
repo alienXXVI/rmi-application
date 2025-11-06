@@ -2,6 +2,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.Naming;
 import java.rmi.server.UnicastRemoteObject;
+import java.rmi.RemoteException;
+
 
 public class ServerConverter implements Converter {
 
@@ -30,9 +32,9 @@ public class ServerConverter implements Converter {
             ServerConverter obj = new ServerConverter();
             Converter stub = (Converter) UnicastRemoteObject.exportObject(obj, 0);
 
-            System.setProperty("java.rmi.server.hostname", "179.106.195.237");
+            System.setProperty("java.rmi.server.hostname", "localhost"); // Adjust hostname as needed
             Registry registry = LocateRegistry.createRegistry(2001);
-            Naming.rebind("rmi://179.106.195.237:2001/Converter", stub);
+            Naming.rebind("rmi://localhost:2001/Converter", stub); // Adjust hostname as needed
 
             System.out.println("Converter Server ready");
         } catch (Exception e) {
