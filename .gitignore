@@ -1,0 +1,26 @@
+# Compilação
+*.class
+
+# Arquivos de log
+*.log
+
+# Diretórios de build
+/bin/
+/build/
+/out/
+
+# Configurações de IDEs
+*.iml
+*.ipr
+*.iws
+.idea/
+.vscode/
+
+# Arquivos temporários do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de pacotes / dependências
+*.jar
+*.war
+*.ear
