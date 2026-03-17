@@ -1,134 +1,62 @@
-# Conversor de Medidas com RMI (Java)
+# Measurement Converter RMI
+## Description
+This project is a distributed Measurement Converter application built in Java using Remote Method Invocation (RMI). It allows a client to perform various unit conversions (temperature, distance, weight, time, and height) by invoking methods on a remote server.
 
-Este projeto implementa um **Conversor de Medidas distribuído** em Java utilizando o **RMI (Remote Method Invocation)**, permitindo a execução de métodos remotos entre cliente e servidor.
+## Technologies
+-   **Java SE**
+-   **Java RMI (Remote Method Invocation)**
+-   **TCP/IP** (Protocol used by RMI for network communication)
 
----
+## Features
+-   **Distributed Architecture:** Decouples the user interface (client) from the business logic (server).
+-   **Multiple Conversion Categories:** Supports Celsius/Fahrenheit, Kilometers/Miles, Kilograms/Pounds, and more.
+-   **Remote Logging:** The server logs every requested operation to its console for monitoring.
+-   **Network Support:** Can be executed on a single machine via `localhost` or across different machines in a local network.
 
-## Funcionalidades
+## How to Run
 
-O sistema realiza conversões em diferentes categorias:
+### 1. Compile the Project
+Open your terminal in the project root and run:
 
-- **Temperatura:** Celsius ↔ Fahrenheit  
-- **Distância:** Km ↔ Milhas, Metros ↔ Centímetros  
-- **Peso:** Quilogramas ↔ Libras  
-- **Tempo:** Horas ↔ Minutos  
-- **Altura:** Metros ↔ Pés  
+    javac *.java
 
-O servidor processa as conversões e exibe no console logs de cada operação solicitada pelos clientes.
+### 2. Start the Server
+Run the server application:
 
----
+    java ServerConverter
 
-## Estrutura
+The server will initialize the RMI registry on port **2001** and wait for connections.
 
-rmi-application/  
-├── ClientConverter.java # Aplicação cliente (interface de usuário)  
-├── ServerConverter.java # Servidor RMI com as implementações de conversão  
-├── Converter.java # Interface remota (definição dos métodos)  
-└── README.md
+### 3. Start the Client
+In a new terminal, run the client:
 
----
+    java ClientConverter
 
-## Tecnologias utilizadas
+If you are running across a network, provide the server's IP address as an argument:
 
-- **Java SE**
-- **Java RMI (Remote Method Invocation)**
+    java ClientConverter <SERVER_IP>
 
----
+## Project Structure
 
-## Como executar
-
-### Executando em **um único computador**
-
-1. **Compilar os arquivos Java**
-
-	`javac *.java`
-
-2. **Iniciar o servidor**
-
-	`java ServerConverter` 
-
-> O servidor cria um registro RMI na porta **2001** e fica aguardando conexões de clientes locais.
-
-3. **Executar o cliente (em outro terminal)**
-
-	`java ClientConverter` 
-
-> O cliente se conecta ao servidor via `localhost` (padrão) e apresenta um menu interativo.
-
-### Executando em **computadores diferentes (rede local)**
-
-> Esta opção demonstra o real comportamento distribuído da aplicação RMI.
-
-#### No computador SERVIDOR
-
-1.  Descubra o **endereço IP local** da máquina servidor:
+-   **`Converter.java`**: The Remote Interface that defines the available conversion methods.
     
-    -   No Windows: `ipconfig`
-        
-    -   No Linux/macOS: `ifconfig`
-        
+-   **`ServerConverter.java`**: The server implementation that contains the math logic for conversions and exports the remote object.
     
-    Exemplo:
+-   **`ClientConverter.java`**: The client application providing a command-line interface for the user to input values.
     
-    `IPv4 Address: 192.168.0.105` 
+-   **`.gitignore`**: Specifies files and directories (like `.class` files or IDE configs) to be ignored by Git.
     
-2.  **Edite a linha no `ServerConverter.java`**, substituindo `localhost` pelo IP da máquina servidor:
-    
-    `System.setProperty("java.rmi.server.hostname", "192.168.0.105");
-    Naming.rebind("rmi://192.168.0.105:2001/Converter", stub);` 
-    
-3.  Compile novamente e execute o servidor:
-    
-    `javac *.java
-    java ServerConverter` 
-    
-    > O servidor ficará aguardando chamadas remotas na rede.
+-   **`README.md`**: Project documentation.
 
-#### No computador CLIENTE
+## What I Learned
 
-1.  Copie os arquivos `ClientConverter.java` e `Converter.java` para o computador cliente.  
-    (não é necessário o `ServerConverter.java`).
-    
-2.  Compile:
-    
-    `javac *.java` 
-    
-3.  Execute o cliente informando o IP do servidor como argumento:
-    
-    `java ClientConverter 192.168.0.105` 
-    
-    > O cliente se conectará ao servidor remoto pela porta **2001** via RMI.
-
-### Dica importante
-
-Se houver bloqueios de conexão:
-
--   Verifique o **firewall** e permita conexões Java/RMI na porta **2001**.
-    
--   Certifique-se de que **ambos os computadores estão na mesma rede**.
-
-## Exemplo de uso
-```
-=== CONVERSOR DE MEDIDAS ===
-1 - Celsius -> Fahrenheit
-2 - Fahrenheit -> Celsius
-3 - Km -> Milhas
-4 - Milhas -> Km
-...
-Escolha uma opcao: 1
-Digite o valor a converter: 25
-25.00 °C = 77.00 °F
-```
-No console do servidor:
-`Convertendo  25.0 °C  para  Fahrenheit`
+-   **Distributed Systems Concepts:** Implementing the RMI lifecycle, including defining interfaces, exporting remote objects, and using the RMI Registry.
+-   **Network Programming:** Configuring system properties (like `java.rmi.server.hostname`) to allow communication between different hosts on a LAN.
+-   **Stub/Skeleton Mechanism:** Understanding how Java handles proxy objects to make remote calls feel like local method calls.
 
 
-## Conceito principal
+## Future Improvements
 
-O projeto demonstra o uso de **RMI (Remote Method Invocation)**, tecnologia que permite a chamada de métodos em objetos localizados em diferentes máquinas, tornando possível a comunicação entre aplicações distribuídas em Java.
-
-## Autoria
-
-Desenvolvido por **Aliana Wakassugui de Paula e Silva, Jamile Hassen Sá e José Lucas Hoppe Macedo**  
-Universidade Estadual do Oeste do Paraná (UNIOESTE)  
-Disciplina: **Sistemas Distribuídos**
+-   **GUI Implementation:** Replace the command-line interface with a JavaFX or Swing graphical interface.
+-   **Dynamic Port Allocation:** Allow the port number to be passed as a command-line argument instead of being hardcoded to 2001.
+-   **Enhanced Security:** Implement a Security Manager or SSL/TLS for encrypted RMI communication.
